@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BasicDataTableComponentConfig } from '../components/basic-datatable/basic-datatable.component';
+import { BolsistasService } from '../services/bolsistas.service';
 
 @Component({
   selector: 'bolsistas',
@@ -7,72 +8,43 @@ import { BasicDataTableComponentConfig } from '../components/basic-datatable/bas
   styleUrl: './bolsistas.component.scss'
 })
 export class BolsistasComponent {
-	
-  /** aqui seria feito uma chamada ao bk através do observable não deu tempo de finalizar! */
-  public dados = [
-    {
-      nome:"mercy"
-    },
-    {
-      nome:"Vincent"
-    },
-    {
-      nome:"Wesley"
-    }
-  ]
 
-  //criando as colunas da tabela dinamicamente
+  dados: any[] = [];
+
+  constructor(service: BolsistasService) {
+    this.dados = service.listarTodosBolsistas().subscribe((res: any) => {
+      this.dados = res;
+    });
+  }
+
   datatableConfig: BasicDataTableComponentConfig = {
-    datatableConfig: BasicDataTableComponentConfig = {
     columns: [
       {
-        name: "ID",
-        prop: "id",
-        width: 20
-      },
-      {
-        name: "Nome Completo",
+        name: "Nome",
         prop: "nome",
         width: 100
       },
       {
-        name: "Identificador",
+        name: "Tipo de identificador",
         prop: "tipoIdentificador",
         width: 100
       },
       {
-        name: "Numero Ident.",
+        name: "Número do indentificador",
         prop: "numeroIdentificador",
         width: 100
       },
       {
-        name: "email",
+        name: "Dados bancários",
         prop: "email",
         width: 100
       },
       {
-        name: "Data Inclusão",
+        name: "Data do cadastro",
         prop: "dataInclusao",
         width: 100
-      },
-      {
-        name: "Codigo Banco",
-        prop: "codigoBanco",
-        width: 100
-      },
-      {
-        name: "Numero Agencia",
-        prop: "numeroAgencia",
-        width: 100
-      },
-      {
-        name: "Numero Conta",
-        prop: "numeroConta",
-        width: 100
-      },
+      }
     ]
-  }
-
   }
 
 }
