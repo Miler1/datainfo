@@ -7,6 +7,8 @@ import { BasicDataTableModule } from './components/basic-datatable/basic-datatab
 import { BolsistasModule } from './../app/bolsistas/bolsistas.component.module';
 import { BolsistasComponent } from './bolsistas/bolsistas.component';
 import { Routes } from '@angular/router';
+import { BolsistasService } from './services/bolsistas.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoute: Routes = [
   // { path: 'about', component: BolsistasComponent },
@@ -21,10 +23,11 @@ const appRoute: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BolsistasModule,
     BasicDataTableModule
   ],
-  providers: [],
+  providers: [BolsistasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

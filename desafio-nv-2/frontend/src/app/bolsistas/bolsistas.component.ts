@@ -12,7 +12,8 @@ export class BolsistasComponent {
   dados: any[] = [];
 
   constructor(service: BolsistasService) {
-    this.dados = service.listarTodosBolsistas().subscribe((res: any) => {
+    service.listarTodosBolsistas().subscribe(res => {
+      console.log('res', res)
       this.dados = res;
     });
   }
