@@ -1,0 +1,24 @@
+<div>
+    <h1>{{titulo}}</h1>
+</div>
+<div class="border-top" style="margin-bottom: 1rem !important;">
+</div>
+<div class="col-md-12 mb-3" style="margin-top: 10px;">
+    <ngx-datatable class="material container striped"
+        [rows]="dados"
+        [columnMode]="'flex'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto">
+        <ngx-datatable-column *ngFor="let col of config.columns" [name]="col.name" [prop]="col.prop" [width]="col.width" [flexGrow]="0.5">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <div *ngIf="!col.link ; else activedLink" [class]="col.cellClass">{{row[col.prop]}}</div>
+                <ng-template #activedLink>
+                    <!-- <button type="button" class="btn icon-btn btn-sm hide-arrow px-0 over" rippleEffect (click)="col.click(row[col.prop])">
+                        <div [class]="col.cellClass">{{row[col.prop]}}</div>
+                    </button> -->
+                </ng-template>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
